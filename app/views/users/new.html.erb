@@ -1,25 +1,30 @@
-<h1>New User Account</h1>
+<h1 class="mb-4">Sign Up</h1>
 
-<form action="/users" method="post">
+<%= form_with url: "/users", local: true do %>
   <div class="mb-3">
-    <label for="first_name_input" class="form-label">First Name</label>
-    <input type="text" name="first_name" id="first_name_input", class="form-control">
+    <label for="first_name">First Name</label>
+    <%= text_field_tag :first_name, nil, class: "form-control", id: "first_name", required: true %>
   </div>
 
   <div class="mb-3">
-    <label for="last_name_input" class="form-label">Last Name</label>
-    <input type="text" name="last_name" id="last_name_input" class="form-control">
+    <label for="last_name">Last Name</label>
+    <%= text_field_tag :last_name, nil, class: "form-control", id: "last_name", required: true %>
   </div>
 
   <div class="mb-3">
-    <label for="email_input" class="form-label">Email</label>
-    <input type="text" name="email" id="email_input" class="form-control">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, nil, class: "form-control", id: "email", required: true %>
   </div>
 
   <div class="mb-3">
-    <label for="password_input" class="form-label">Password</label>
-    <input type="password" name="password" id="password_input" class="form-control">
+    <label for="password">Password</label>
+    <%= password_field_tag :password, nil, class: "form-control", id: "password", required: true %>
   </div>
 
-  <button class="btn btn-primary">Signup</button>
-</form>
+  <div class="mb-3">
+    <label for="password_confirmation">Confirm Password</label>
+    <%= password_field_tag :password_confirmation, nil, class: "form-control", id: "password_confirmation", required: true %>
+  </div>
+
+  <%= submit_tag "Sign Up", class: "btn btn-success" %>
+<% end %>
