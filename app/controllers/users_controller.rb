@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    # Ensure you permit the user object as a whole
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 end
