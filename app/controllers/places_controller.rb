@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+  before_action :require_login
 
   def index
     @places = Place.all
@@ -6,7 +7,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find_by({ "id" => params["id"] })
-    @entries = Entry.where({ "place_id" => @place["id"] })
+    @entries = Entry.where({ "place_id" => @place["id"], "user_id" => current_user.id })
   end
 
   def new
@@ -18,5 +19,4 @@ class PlacesController < ApplicationController
     @place.save
     redirect_to "/places"
   end
-
 end
