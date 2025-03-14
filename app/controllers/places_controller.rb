@@ -1,32 +1,25 @@
 class PlacesController < ApplicationController
-  before_action :require_login
+  before_action :require_login  # Require user to be logged in
 
   def index
-    @places = Place.all
+    @places = Place.all  # Show all places
   end
 
   def show
-    @place = Place.find_by(id: params[:id])
-    @entries = Entry.where(place_id: @place.id, user_id: current_user.id)
+    @place = Place.find_by(id: params["id"])  # Find a specific place by ID
+    @entries = Entry.where(place_id: @place["id"], user_id: current_user.id)  # Show only the user's entries for this place
   end
 
   def new
   end
 
   def create
-    @place = Place.new(place_params)
+    @place = Place.new(name: params["name"])  # Create a new place
 
-    if @place.save
-      redirect_to places_path
+    if @place.save  # Save the place if valid
+      redirect_to "/places"  # Redirect to places index
     else
-      render :new
+      render :new  # If save fails, re-render the form
     end
-  end
-
-  private
-
-  def place_params
-    # Permit only the name of the place to be passed in
-    params.require(:place).permit(:name)
   end
 end

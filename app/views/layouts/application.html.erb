@@ -28,8 +28,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/places">Places</a>
               </li>
+              <!-- Update the logout link to use method: :delete -->
               <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <%= link_to "Logout", "/logout", method: :delete, class: "nav-link" %>
               </li>
             <% else %>
               <!-- If not logged in, show Login and Signup links -->
@@ -47,10 +48,10 @@
 
     <!-- Flash messages -->
     <div class="container mt-3">
-      <% if flash["notice"] %>
-        <div class="alert alert-success"><%= flash["notice"] %></div>
-      <% elsif flash["error"] %>
-        <div class="alert alert-danger"><%= flash["error"] %></div>
+      <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% elsif flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
       <% end %>
 
       <!-- Main page content -->

@@ -5,12 +5,12 @@
     You must first <a href="/login" class="btn btn-info btn-sm">log in</a> to post.
   </div>
 <% else %>
-  <%= form_with url: "/places", local: true do %>
+  <%= form_with url: "/places", local: true do |form| %>
     <div class="mb-3">
       <label for="name_input" class="form-label">Name</label>
-      <%= text_field_tag :name, nil, class: "form-control", id: "name_input" %>
+      <%= form.text_field :name, class: "form-control", id: "name_input" %>
     </div>
 
-    <%= submit_tag "Save", class: "btn btn-success" %>
+    <%= form.submit "Save", class: "btn btn-success" %>
   <% end %>
 <% end %>
