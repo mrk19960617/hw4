@@ -1,11 +1,16 @@
-<h1 class="mb-4">Places</h1>
+<h1 class="mb-4">New Place</h1>
 
-<ul class="list-group mb-4">
-  <% for place in @places %>
-    <li class="list-group-item">
-      <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
-    </li>
+<% if current_user.nil? %>
+  <div class="alert alert-warning">
+    You must first <a href="/login" class="btn btn-info btn-sm">log in</a> to post.
+  </div>
+<% else %>
+  <%= form_with url: "/places", local: true do %>
+    <div class="mb-3">
+      <label for="name_input" class="form-label">Name</label>
+      <%= text_field_tag :name, nil, class: "form-control", id: "name_input" %>
+    </div>
+
+    <%= submit_tag "Save", class: "btn btn-success" %>
   <% end %>
-</ul>
-
-<%= link_to "Add New Place", "/places/new", class: "btn btn-primary" %>
+<% end %>
